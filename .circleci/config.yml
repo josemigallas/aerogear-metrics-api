@@ -4,6 +4,9 @@
 version: 2
 jobs:
   build:
+    filters:
+       tags:
+         only: /.*/
     docker:
       - image: circleci/golang:1.9
 
@@ -30,10 +33,7 @@ jobs:
     filters:
       # execute only on semver-style tags (vX.X.X)
       tags:
-        only: /^v\d\.\d\.\d/
-      branches:
-        # needs to explicitly ignore all branches else gets run every time
-        ignore: /.*/
+        only: /.*/
     docker:
       - image: circleci/golang:1.9
     working_directory: /go/src/github.com/aerogear/aerogear-app-metrics
